@@ -3,7 +3,7 @@ import openai
 import base64
 
 # Set OpenAI API Key (Pastikan kunci API benar)
-encoded_key = "c2stcHJvai1ka1E1cjU4Si1qSm9KMWNFZzZLN0g1Qmh3Mk82WEkwblVzeEJlZW4zbUZPQldhSVNqdlJoejBSTFNCamktU3RwVmhyYklJV1hFT1QzQmxia0ZKUzhhQkZYQWtlamRlSWFJVTBnVjRLU1FnbHFNNmxRSExsUHdvTlFHbnRYc3Y5dWREbDg2dXl3ZG1WUDBCTlQtdXlqb1dySlE2UUE="
+encoded_key = "c2stcHJvai1tOUpNbkFzazVHVlFrWXdJbDVjaEI5aGlyaGhMV2hnWFVtS29lVktvVlh5aWdsODJmODBIT2FQY3hNTWhRYlF1ZGp1bTNGcWU0b1QzQmxia0ZKM004OU9wVldvRkNuNHphVE1TT3Y0YktxbDd6eHd3dUZQaGZWZkZVVDZ5Q0hDOTE5WVJidGYzWG80QmtDRUpDQW0tMHNONk4tQUE="
 try:
     openai.api_key = base64.b64decode(encoded_key).decode("utf-8")
 except Exception as e:

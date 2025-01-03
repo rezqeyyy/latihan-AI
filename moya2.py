@@ -1,7 +1,7 @@
 import base64
 
 # Ganti dengan API Key Anda
-api_key = "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"
+api_key = "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"
 encoded_key = base64.b64encode(api_key.encode("utf-8")).decode("utf-8")
 
 print(encoded_key)

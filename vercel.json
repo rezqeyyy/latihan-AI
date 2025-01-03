@@ -1,14 +1,14 @@
 {
     "builds": [
       {
-        "src": "moya.py",
+        "src": "index.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "moya.py"
+        "dest": "index.py"
       }
     ]
   }

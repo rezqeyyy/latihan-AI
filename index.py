@@ -73,7 +73,7 @@ HTML_TEMPLATE = """
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
-            margin-top: 20px.
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -90,7 +90,7 @@ HTML_TEMPLATE = """
                         <form method="post" class="mb-4">
                             <div class="mb-3">
                                 <label for="prompt" class="form-label">Pertanyaan:</label>
-                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertanyaan di sini ya..." required>
+                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertamyaan disini ya..." required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">Send</button>

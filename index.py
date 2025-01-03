@@ -2,11 +2,14 @@ from flask import Flask, request, render_template_string
 import openai
 import base64
 
-# Set your OpenAI API key (decoded from base64)
+# Set OpenAI API Key (Pastikan kunci API benar)
 encoded_key = "c2stcHJvai1BVjVtU0FKQVg0U041VTBvWk9pb255ZjVEUTUycWVTRXFrMG5HYzFWYVVMSi15U0xlR0JoU3FWeWhHaDdQT1lKWGdzRTV0cnZnc1QzQmxia0ZKaGx5VnVtUUlEZlVocmlCY0VHSDBkSnNSellXbW0ycHVtT3VnQXJrRVp2aG55N3BMRHBaWENMRGthNFR0NGt4M2lrbnpLclV6SUE="
-openai.api_key = base64.b64decode(encoded_key).decode("utf-8")
+try:
+    openai.api_key = base64.b64decode(encoded_key).decode("utf-8")
+except Exception as e:
+    print(f"Error decoding API key: {str(e)}")
 
-# Function to interact with GPT
+# Fungsi interaksi dengan GPT
 def chat_with_gpt(prompt):
     try:
         response = openai.ChatCompletion.create(
@@ -17,12 +20,13 @@ def chat_with_gpt(prompt):
     except openai.error.AuthenticationError:
         return "Authentication error: Please check your API key."
     except Exception as e:
+        print(f"Error occurred: {str(e)}")
         return f"An error occurred: {str(e)}"
 
-# Create Flask app
+# Buat aplikasi Flask
 app = Flask(__name__)
 
-# Define a HTML template with enhanced UI
+# HTML Template
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -55,26 +59,6 @@ HTML_TEMPLATE = """
             text-align: center;
             margin-bottom: 20px;
         }
-        .header h1 {
-            font-size: 2.5rem;
-            animation: fadeInDown 1.5s ease-in-out;
-        }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .response-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -83,17 +67,17 @@ HTML_TEMPLATE = """
             <div class="col-md-8">
                 <div class="header">
                     <h1>ROBBERT</h1>
-                    <p>Ikan sepat makan genteng, apakabar Asan ganteng</p>
+                    <p>Selamat datang! Apa yang ingin Anda tanyakan?</p>
                 </div>
                 <div class="card text-dark">
                     <div class="card-body">
-                        <form method="post" class="mb-4">
+                        <form method="post">
                             <div class="mb-3">
                                 <label for="prompt" class="form-label">Pertanyaan:</label>
-                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertamyaan disini ya..." required>
+                                <input type="text" id="prompt" name="prompt" class="form-control" required>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Send</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Kirim</button>
                             </div>
                         </form>
                         {% if response %}
@@ -107,12 +91,11 @@ HTML_TEMPLATE = """
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 """
 
-# Define the main route
+# Route utama
 @app.route("/", methods=["GET", "POST"])
 def index():
     response = None
@@ -120,3 +103,6 @@ def index():
         user_prompt = request.form.get("prompt")
         response = chat_with_gpt(user_prompt)
     return render_template_string(HTML_TEMPLATE, response=response)
+
+if __name__ == "__main__":
+    app.run(debug=True)

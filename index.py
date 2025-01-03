@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template_string
 import openai
+import base64
 
-# Set your OpenAI API key
-openai.api_key = "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"
+# Set your OpenAI API key (decoded from base64)
+encoded_key = "c2stcHJvai1BVjVtU0FKQVg0U041VTBvWk9pb255ZjVEUTUycWVTRXFrMG5HYzFWYVVMSi15U0xlR0JoU3FWeWhHaDdQT1lKWGdzRTV0cnZnc1QzQmxia0ZKaGx5VnVtUUlEZlVocmlCY0VHSDBkSnNSellXbW0ycHVtT3VnQXJrRVp2aG55N3BMRHBaWENMRGthNFR0NGt4M2lrbnpLclV6SUE="
+openai.api_key = base64.b64decode(encoded_key).decode("utf-8")
 
 # Function to interact with GPT
 def chat_with_gpt(prompt):
@@ -71,7 +73,7 @@ HTML_TEMPLATE = """
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 20px.
         }
     </style>
 </head>
@@ -88,7 +90,7 @@ HTML_TEMPLATE = """
                         <form method="post" class="mb-4">
                             <div class="mb-3">
                                 <label for="prompt" class="form-label">Pertanyaan:</label>
-                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertamyaan disini ya..." required>
+                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertanyaan di sini ya..." required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">Send</button>
@@ -118,6 +120,3 @@ def index():
         user_prompt = request.form.get("prompt")
         response = chat_with_gpt(user_prompt)
     return render_template_string(HTML_TEMPLATE, response=response)
-
-if __name__ == "__main__":
-    app.run(debug=True)

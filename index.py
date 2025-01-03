@@ -67,17 +67,17 @@ HTML_TEMPLATE = """
             <div class="col-md-8">
                 <div class="header">
                     <h1>ROBBERT</h1>
-                    <p>Selamat datang! Apa yang ingin Anda tanyakan?</p>
+                    <p>ikan sepat makan genteng, selamat datang Asan ganteng!</p>
                 </div>
                 <div class="card text-dark">
                     <div class="card-body">
                         <form method="post">
                             <div class="mb-3">
                                 <label for="prompt" class="form-label">Pertanyaan:</label>
-                                <input type="text" id="prompt" name="prompt" class="form-control" required>
+                                <input type="text" id="prompt" name="prompt" class="form-control" placeholder="Ketik pertamyaan disini ya..." required>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Kirim</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Send</button>
                             </div>
                         </form>
                         {% if response %}
